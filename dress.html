@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dress Details | ROAD — Rent On A Dress</title>
+  <meta name="description" content="View dress details, sizing, and request availability at ROAD (Rent On A Dress)." />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/public.css" />
+</head>
+<body>
+  <!-- Shared Header Mount -->
+  <div id="site-header-mount"></div>
+
+  <main>
+    <div class="container">
+      <!-- Breadcrumbs -->
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="shop.html">The Collection</a>
+        <span>/</span>
+        <span id="breadcrumb-dress-name" style="color: var(--color-text-primary); font-weight: 500;">Dress Details</span>
+      </nav>
+
+      <!-- Main Dress Detail Grid -->
+      <section class="detail-grid" id="dress-detail-mount">
+        <!-- Populated dynamically by js/dress.js -->
+      </section>
+    </div>
+
+    <!-- Related Dresses Section -->
+    <section class="section bg-secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Complete Your Edit</span>
+          <h2 class="section-title">You May Also Adore</h2>
+        </div>
+
+        <div class="dress-grid" id="related-dresses-grid">
+          <!-- Populated dynamically by js/dress.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Reservation / Check Availability Modal -->
+  <div class="modal-backdrop" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-heading">
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="booking-modal-close" aria-label="Close modal">&times;</button>
+      <span class="eyebrow">Concierge Reservation Request</span>
+      <h2 id="booking-modal-heading" style="font-size: var(--text-2xl); margin-bottom: 4px;">Check Availability &amp; Reserve</h2>
+      <p id="modal-dress-name" style="font-size: var(--text-sm); color: var(--color-gold-dark); font-weight: 600; margin-bottom: 20px;"></p>
+
+      <form id="booking-inquiry-form">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="booking-name">Full Name *</label>
+            <input type="text" id="booking-name" class="form-control" required placeholder="e.g. Zara Khan" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="booking-phone">Phone / WhatsApp *</label>
+            <input type="tel" id="booking-phone" class="form-control" required placeholder="+92 300 1234567" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="booking-email">Email Address *</label>
+            <input type="email" id="booking-email" class="form-control" required placeholder="you@example.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="booking-size">Selected Size *</label>
+            <select id="booking-size" class="form-control" required>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="booking-start-date">Delivery / Start Date *</label>
+            <input type="date" id="booking-start-date" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="booking-end-date">Return Date *</label>
+            <input type="date" id="booking-end-date" class="form-control" required />
+          </div>
+        </div>
+
+        <div id="booking-price-summary" style="padding: 12px 16px; background: var(--color-bg-secondary); border-radius: var(--radius-md); font-size: var(--text-sm); margin-bottom: 16px;">
+          Estimated Rental: 1 day
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="booking-notes">Event Details or Fitting Notes (Optional)</label>
+          <textarea id="booking-notes" class="form-control" style="min-height: 80px;" placeholder="Share your event venue, backup size preference, or delivery timing..."></textarea>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <button type="submit" class="btn btn-primary btn-block">Submit Reservation Request</button>
+          <button type="button" id="booking-whatsapp-submit-btn" class="btn btn-whatsapp btn-block">
+            Send &amp; Confirm Instantly via WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Footer Mount -->
+  <div id="site-footer-mount"></div>
+
+  <script type="module" src="js/dress.js"></script>
+</body>
+</html>

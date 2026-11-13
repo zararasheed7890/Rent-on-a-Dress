@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Booking Inquiry | ROAD — Rent On A Dress</title>
+  <meta name="description" content="Contact ROAD (Rent On A Dress) to inquire about dress availability, custom rental dates, or private showroom fittings." />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/public.css" />
+</head>
+<body>
+  <!-- Shared Header Mount -->
+  <div id="site-header-mount"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Personal Styling &amp; Reservations</span>
+        <h1>Book a Fitting or Inquire</h1>
+        <p>Submit a dress reservation request, schedule a private showroom appointment, or ask our styling concierge a question.</p>
+      </div>
+    </section>
+
+    <!-- Contact & Booking Form Section -->
+    <section class="section">
+      <div class="container contact-grid">
+        <!-- Left Showroom Card -->
+        <div class="contact-info-card">
+          <div>
+            <span class="eyebrow" style="color: var(--color-gold-light);">The ROAD Showroom</span>
+            <h2 style="font-size: var(--text-3xl); margin-bottom: var(--space-4);">Visit Our Private Atelier</h2>
+            <p style="color: rgba(250, 246, 242, 0.78); font-size: var(--text-sm); margin-bottom: var(--space-8);">
+              Try on your favorite evening and cocktail silhouettes in person with dedicated styling assistance.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-5); font-size: var(--text-sm);">
+              <div>
+                <div style="color: var(--color-gold-light); font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em;">Location</div>
+                <div style="margin-top: 4px;">Suite 4B, Fashion Avenue, Gulberg III, Lahore</div>
+              </div>
+              <div>
+                <div style="color: var(--color-gold-light); font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em;">Concierge Phone &amp; WhatsApp</div>
+                <div style="margin-top: 4px;">+92 300 1234567</div>
+              </div>
+              <div>
+                <div style="color: var(--color-gold-light); font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em;">Email</div>
+                <div style="margin-top: 4px;">concierge@rentonadress.com</div>
+              </div>
+              <div>
+                <div style="color: var(--color-gold-light); font-weight: 600; text-transform: uppercase; font-size: var(--text-xs); letter-spacing: 0.1em;">Showroom Hours</div>
+                <div style="margin-top: 4px;">Monday – Saturday: 11:00 AM – 8:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding-top: var(--space-6); border-top: 1px solid rgba(250, 246, 242, 0.15); font-size: var(--text-xs); color: rgba(250, 246, 242, 0.65);">
+            Need urgent same-day availability? Call our concierge directly for priority dispatch.
+          </div>
+        </div>
+
+        <!-- Right Inquiry Form Card -->
+        <div class="contact-form-card">
+          <h2 style="font-size: var(--text-2xl); margin-bottom: var(--space-2);">Send a Booking or Styling Inquiry</h2>
+          <p style="font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            All inquiries are saved directly to our reservation desk and answered within 2 business hours.
+          </p>
+
+          <form id="contact-inquiry-form">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Your Full Name *</label>
+                <input type="text" id="contact-name" class="form-control" required placeholder="e.g. Ayesha Malik" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-phone">Phone / WhatsApp *</label>
+                <input type="tel" id="contact-phone" class="form-control" required placeholder="+92 300 1234567" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-email">Email Address *</label>
+              <input type="email" id="contact-email" class="form-control" required placeholder="you@example.com" />
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="contact-dress-select">Dress of Interest (Optional)</label>
+                <select id="contact-dress-select" class="form-control">
+                  <option value="">General Inquiry / Private Showroom Fitting</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-size">Preferred Size</label>
+                <select id="contact-size" class="form-control">
+                  <option value="">Not Sure / Need Fitting</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label class="form-label" for="contact-start-date">Event / Rental Start Date</label>
+                <input type="date" id="contact-start-date" class="form-control" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-end-date">Preferred Return Date</label>
+                <input type="date" id="contact-end-date" class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Message or Event Details *</label>
+              <textarea id="contact-message" class="form-control" required placeholder="Tell us about your event, preferred fitting time, or any styling questions..."></textarea>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <button type="submit" class="btn btn-primary btn-block">Send Inquiry to Concierge</button>
+              <button type="button" id="contact-whatsapp-btn" class="btn btn-whatsapp btn-block">
+                Send Inquiry Instantly via WhatsApp
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer Mount -->
+  <div id="site-footer-mount"></div>
+
+  <script type="module" src="js/contact.js"></script>
+</body>
+</html>

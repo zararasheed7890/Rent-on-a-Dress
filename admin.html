@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Portal | ROAD — Rent On A Dress</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <!-- ======================================================================
+       1. ADMIN LOGIN VIEW (Protected by Supabase Auth)
+       ====================================================================== -->
+  <section id="admin-auth-view" class="admin-auth-wrapper">
+    <div class="admin-login-card">
+      <div class="admin-login-header">
+        <a href="index.html" class="brand-logo" style="align-items: center; margin-bottom: 12px;">
+          <span class="brand-logo-main">ROAD</span>
+          <span class="brand-logo-sub">Rent On A Dress</span>
+        </a>
+        <h1 style="font-size: var(--text-2xl); margin-bottom: 6px;">Admin Concierge Portal</h1>
+        <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">
+          Sign in with your Supabase Admin account to manage dresses, categories, and booking requests.
+        </p>
+        <div style="margin-top: 12px;">
+          <button type="button" class="badge supabase-status-indicator open-supabase-config-btn" style="cursor: pointer;"></button>
+        </div>
+      </div>
+
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label class="form-label" for="admin-email">Admin Email</label>
+          <input type="email" id="admin-email" class="form-control" required placeholder="admin@rentonadress.com" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="admin-password">Password</label>
+          <input type="password" id="admin-password" class="form-control" required placeholder="••••••••" />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 8px;">
+          Sign In to Dashboard
+        </button>
+      </form>
+
+      <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: var(--text-xs); color: var(--color-text-muted);">
+        <a href="index.html">&larr; Back to Public Website</a>
+        <button type="button" class="open-supabase-config-btn" style="color: var(--color-gold-dark); font-weight: 600; text-decoration: underline;">
+          Supabase Settings
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       2. ADMIN DASHBOARD VIEW
+       ====================================================================== -->
+  <section id="admin-dashboard-view" class="admin-layout hidden">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div>
+        <a href="index.html" class="brand-logo">
+          <span class="brand-logo-main">ROAD</span>
+          <span class="brand-logo-sub">Atelier Admin</span>
+        </a>
+
+        <nav class="admin-nav" aria-label="Admin Navigation">
+          <button type="button" class="admin-nav-btn active" data-admin-tab="overview">
+            <span>❖</span> Dashboard Overview
+          </button>
+          <button type="button" class="admin-nav-btn" data-admin-tab="dresses">
+            <span>👗</span> Manage Dresses
+          </button>
+          <button type="button" class="admin-nav-btn" data-admin-tab="categories">
+            <span>✦</span> Manage Categories
+          </button>
+          <button type="button" class="admin-nav-btn" data-admin-tab="inquiries">
+            <span>📩</span> Booking Inquiries
+          </button>
+        </nav>
+      </div>
+
+      <div style="border-top: 1px solid rgba(250,246,242,0.12); padding-top: 16px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="font-size: var(--text-xs); color: rgba(250,246,242,0.65);">
+          Signed in as:<br />
+          <strong id="admin-user-email" style="color: #FFF;">admin@rentonadress.com</strong>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <a href="index.html" class="btn btn-outline btn-sm" style="color: #FFF; background: rgba(255,255,255,0.08); flex:1;">View Site</a>
+          <button type="button" id="admin-logout-btn" class="btn btn-outline btn-sm" style="color: #FFB4B4; border-color: rgba(255,180,180,0.3); background: transparent; flex:1;">Sign Out</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <!-- Topbar -->
+      <header class="admin-topbar">
+        <div>
+          <span class="eyebrow" style="margin-bottom: 2px;">ROAD Management System</span>
+          <h1 style="font-size: var(--text-2xl);">Atelier Control Center</h1>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <button type="button" class="badge supabase-status-indicator open-supabase-config-btn" style="cursor: pointer;"></button>
+          <button type="button" class="btn btn-primary btn-sm open-add-dress-btn">+ Add New Dress</button>
+        </div>
+      </header>
+
+      <!-- TAB 1: OVERVIEW -->
+      <div id="tab-overview" class="admin-tab-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-card-label">Total Dresses</span>
+            <span class="stat-card-value" id="stat-total-dresses">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card-label">Available Now</span>
+            <span class="stat-card-value" id="stat-available-dresses">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card-label">Active Categories</span>
+            <span class="stat-card-value" id="stat-total-categories">0</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-card-label">Pending Inquiries</span>
+            <span class="stat-card-value" id="stat-pending-inquiries">0</span>
+          </div>
+        </div>
+
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <h2 style="font-size: var(--text-xl);">Recent Booking &amp; Fitting Inquiries</h2>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Requested Dress</th>
+                  <th>Rental Dates</th>
+                  <th>Est. Total</th>
+                  <th>Notes</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-recent-inquiries-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: MANAGE DRESSES -->
+      <div id="tab-dresses" class="admin-tab-section hidden">
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div>
+              <h2 style="font-size: var(--text-xl);">Couture Dress Catalogue</h2>
+              <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">Add, edit, upload multiple photos to Supabase Storage, or update rental availability.</p>
+            </div>
+            <button type="button" class="btn btn-primary btn-sm open-add-dress-btn">+ Add New Dress</button>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Dress</th>
+                  <th>Category</th>
+                  <th>Daily Price</th>
+                  <th>Sizes</th>
+                  <th>Status &amp; Stock</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-dresses-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: MANAGE CATEGORIES -->
+      <div id="tab-categories" class="admin-tab-section hidden">
+        <div class="contact-grid">
+          <div class="admin-panel-card" style="padding: var(--space-6);">
+            <h2 style="font-size: var(--text-xl); margin-bottom: var(--space-4);">Add New Category</h2>
+            <form id="admin-category-form">
+              <div class="form-group">
+                <label class="form-label" for="cat-name-input">Category Name *</label>
+                <input type="text" id="cat-name-input" class="form-control" required placeholder="e.g. Bridal Shower" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cat-desc-input">Short Description</label>
+                <textarea id="cat-desc-input" class="form-control" style="min-height: 80px;" placeholder="Elegant silhouettes crafted for..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cat-image-input">Cover Image URL</label>
+                <input type="url" id="cat-image-input" class="form-control" placeholder="https://images.unsplash.com/..." />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Create Category</button>
+            </form>
+          </div>
+
+          <div class="admin-panel-card">
+            <div class="admin-panel-header">
+              <h2 style="font-size: var(--text-xl);">All Categories</h2>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Slug</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-categories-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: BOOKING INQUIRIES -->
+      <div id="tab-inquiries" class="admin-tab-section hidden">
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div>
+              <h2 style="font-size: var(--text-xl);">All Booking &amp; Contact Inquiries</h2>
+              <p style="font-size: var(--text-xs); color: var(--color-text-secondary);">Update reservation status from Pending to Confirmed or Completed.</p>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Client</th>
+                  <th>Requested Dress</th>
+                  <th>Rental Dates</th>
+                  <th>Est. Total</th>
+                  <th>Notes</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-inquiries-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ======================================================================
+       3. ADD / EDIT DRESS MODAL (With Multi-Image Upload to Supabase Storage)
+       ====================================================================== -->
+  <div class="modal-backdrop" id="dress-form-modal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 720px;">
+      <button type="button" class="modal-close" id="dress-modal-close">&times;</button>
+      <span class="eyebrow">Catalogue Management</span>
+      <h2 id="dress-modal-title" style="font-size: var(--text-2xl); margin-bottom: var(--space-5);">Add New Couture Dress</h2>
+
+      <form id="admin-dress-form">
+        <input type="hidden" id="dress-id-input" />
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="dress-name-input">Dress Name *</label>
+            <input type="text" id="dress-name-input" class="form-control" required placeholder="e.g. Aurelia Champagne Silk Gown" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dress-category-input">Category *</label>
+            <select id="dress-category-input" class="form-control" required>
+              <option value="Evening">Evening</option>
+              <option value="Cocktail">Cocktail</option>
+              <option value="Formal">Formal</option>
+              <option value="Bridal Guest">Bridal Guest</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="dress-price-input">Daily Rental Price (Rs.) *</label>
+            <input type="number" id="dress-price-input" class="form-control" required min="0" step="100" placeholder="8500" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dress-retail-input">Retail Value (Rs.)</label>
+            <input type="number" id="dress-retail-input" class="form-control" min="0" step="500" placeholder="95000" />
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="dress-color-input">Color Shade *</label>
+            <input type="text" id="dress-color-input" class="form-control" required placeholder="e.g. Champagne, Blush Pink, Emerald" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="dress-status-input">Availability Status *</label>
+            <select id="dress-status-input" class="form-control" required>
+              <option value="Available">Available</option>
+              <option value="Rented">Rented</option>
+              <option value="Maintenance">Maintenance</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">Available Sizes *</label>
+            <div class="checkbox-pills">
+              <label class="checkbox-pill"><input type="checkbox" name="dress-sizes" value="XS" /> XS</label>
+              <label class="checkbox-pill"><input type="checkbox" name="dress-sizes" value="S" checked /> S</label>
+              <label class="checkbox-pill"><input type="checkbox" name="dress-sizes" value="M" checked /> M</label>
+              <label class="checkbox-pill"><input type="checkbox" name="dress-sizes" value="L" checked /> L</label>
+              <label class="checkbox-pill"><input type="checkbox" name="dress-sizes" value="XL" /> XL</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="dress-stock-input">Stock Quantity &amp; Featured</label>
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <input type="number" id="dress-stock-input" class="form-control" style="max-width: 100px;" min="0" value="1" />
+              <label class="checkbox-pill" style="padding: 0.65rem 1rem;">
+                <input type="checkbox" id="dress-featured-input" /> Feature on Home Page
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dress-desc-input">Description *</label>
+          <textarea id="dress-desc-input" class="form-control" required style="min-height: 90px;" placeholder="Describe the silhouette, fabric drape, and occasion..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="dress-care-input">Fabric &amp; Care Notes</label>
+          <input type="text" id="dress-care-input" class="form-control" placeholder="100% Mulberry Silk. Complimentary dry cleaning included." />
+        </div>
+
+        <!-- Multiple Images Upload to Supabase Storage -->
+        <div class="form-group">
+          <label class="form-label">Dress Images (Supabase Storage Upload or Image URLs)</label>
+          <label class="upload-zone" for="dress-images-file-input">
+            <div style="font-weight: 600; color: var(--color-gold-dark); margin-bottom: 4px;" id="upload-status-text">
+              Click to upload multiple dress photos (JPG, PNG, WebP)
+            </div>
+            <div style="font-size: var(--text-xs); color: var(--color-text-muted);">
+              Uploads directly to Supabase Storage bucket <code>dress-images</code>
+            </div>
+            <input type="file" id="dress-images-file-input" accept="image/*" multiple style="display: none;" />
+          </label>
+
+          <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <input type="url" id="dress-image-url-input" class="form-control" placeholder="Or paste an image URL (https://...)" />
+            <button type="button" id="add-image-url-btn" class="btn btn-outline btn-sm">Add URL</button>
+          </div>
+
+          <div class="image-preview-list" id="dress-image-previews"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 12px;">Save Dress</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       4. SUPABASE CREDENTIALS MODAL
+       ====================================================================== -->
+  <div class="modal-backdrop" id="supabase-config-modal" role="dialog" aria-modal="true">
+    <div class="modal-content" style="max-width: 520px;">
+      <button type="button" class="modal-close" id="supabase-config-close">&times;</button>
+      <span class="eyebrow">Backend Connection</span>
+      <h2 style="font-size: var(--text-2xl); margin-bottom: 8px;">Supabase Project Settings</h2>
+      <p style="font-size: var(--text-xs); color: var(--color-text-secondary); margin-bottom: 20px;">
+        Your project credentials are also pre-configured in <code>js/config.js</code>. You can update or override them below at any time.
+      </p>
+
+      <form id="supabase-config-form">
+        <div class="form-group">
+          <label class="form-label" for="cfg-supabase-url">Supabase Project URL</label>
+          <input type="url" id="cfg-supabase-url" class="form-control" required placeholder="https://scwazamgkrcznvvesebb.supabase.co" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cfg-supabase-key">Supabase Anon Public Key</label>
+          <input type="text" id="cfg-supabase-key" class="form-control" required placeholder="eyJhbGciOiJIUzI1NiIs..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="cfg-whatsapp-number">WhatsApp Concierge Number (with Country Code)</label>
+          <input type="text" id="cfg-whatsapp-number" class="form-control" placeholder="+92 300 1234567" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Save &amp; Connect</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | ROAD — Rent On A Dress</title>
+  <meta name="description" content="Discover the story behind ROAD (Rent On A Dress) — redefining luxury fashion through circular couture and unforgettable evening wear." />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/public.css" />
+</head>
+<body>
+  <!-- Shared Header Mount -->
+  <div id="site-header-mount"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">The Maison &bull; Since 2026</span>
+        <h1>Redefining the Modern Wardrobe</h1>
+        <p>Born from a belief that extraordinary dresses deserve more than a single night in the back of a closet.</p>
+      </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="section">
+      <div class="container story-grid">
+        <div class="story-image">
+          <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=1000&q=85" alt="ROAD Couture Atelier" />
+        </div>
+        <div>
+          <span class="eyebrow">Our Philosophy</span>
+          <h2 class="section-title" style="text-align: left;">Luxury Without Compromise</h2>
+          <p style="color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+            <strong>ROAD (Rent On A Dress)</strong> was founded to solve a universal dilemma: wanting to feel breathtaking at every gala, wedding, and cocktail soirée without investing hundreds of thousands of rupees in a gown worn only once.
+          </p>
+          <p style="color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            We curate an ever-evolving archive of authentic silk, velvet, tulle, and hand-embellished evening dresses. Each piece is selected for its flattering cut, timeless palette, and red-carpet presence.
+          </p>
+          <div class="hero-highlights" style="margin-bottom: var(--space-8);">
+            <div>
+              <div class="hero-stat-num">90%</div>
+              <div class="hero-stat-label">Savings vs. Retail Price</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">5-Point</div>
+              <div class="hero-stat-label">Atelier Quality Check</div>
+            </div>
+            <div>
+              <div class="hero-stat-num">Zero</div>
+              <div class="hero-stat-label">Single-Wear Waste</div>
+            </div>
+          </div>
+          <a href="shop.html" class="btn btn-primary">Explore Our Archive</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Pillars -->
+    <section class="section bg-secondary">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Why Women Choose ROAD</span>
+          <h2 class="section-title">The Three Pillars of ROAD</h2>
+        </div>
+
+        <div class="steps-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
+          <div class="step-card">
+            <div class="step-number">✦</div>
+            <h3 class="step-title">Curated Craftsmanship</h3>
+            <p class="step-desc">Every gown in our collection is chosen for superior fabric weight, internal structure, and effortless drape across sizes XS to XL.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">♻</div>
+            <h3 class="step-title">Conscious Glamour</h3>
+            <p class="step-desc">By sharing a collective luxury closet, our community extends the lifecycle of couture garments and reduces textile waste.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">♡</div>
+            <h3 class="step-title">White-Glove Concierge</h3>
+            <p class="step-desc">From personal styling advice and private showroom fittings to complimentary dry cleaning, every rental feels effortless.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Footer Mount -->
+  <div id="site-footer-mount"></div>
+
+  <script type="module">
+    import { initSharedLayout } from './js/ui.js';
+    document.addEventListener('DOMContentLoaded', () => initSharedLayout('about'));
+  </script>
+</body>
+</html>

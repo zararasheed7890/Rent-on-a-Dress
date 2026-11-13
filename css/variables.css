@@ -1,0 +1,96 @@
+/* ==========================================================================
+   ROAD (Rent On A Dress) — Design Tokens & CSS Variables
+   Palette: Champagne Gold, Soft Blush Pink, Warm Cream, Alabaster, Espresso
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Color Palette — Warm Neutrals & Soft Blush & Champagne Gold */
+  --color-bg-primary: #FAF6F2;        /* Soft Warm Cream */
+  --color-bg-secondary: #F4ECE6;      /* Blush-Tinted Warm Neutral */
+  --color-bg-elevated: #FFFFFF;       /* Pure Crisp White for Cards */
+  --color-bg-blush: #F7E5E2;          /* Soft Blush Pink Accent Background */
+  --color-bg-dark: #231C18;           /* Deep Espresso Charcoal */
+
+  /* Brand Accent Colors */
+  --color-gold: #C5A059;              /* Champagne Gold */
+  --color-gold-light: #DFC690;        /* Soft Shimmer Gold */
+  --color-gold-dark: #9F7C38;         /* Rich Antique Gold */
+  --color-blush: #E8C5C0;             /* Delicate Blush Pink */
+  --color-blush-deep: #C98E86;        /* Dusty Rose Accent */
+
+  /* Typography Colors */
+  --color-text-primary: #261F1B;      /* Deep Espresso Brown-Black */
+  --color-text-secondary: #685B53;    /* Warm Taupe Muted Text */
+  --color-text-muted: #9A8C84;        /* Soft Warm Grey */
+  --color-text-inverse: #FAF6F2;      /* Cream Text on Dark Backgrounds */
+
+  /* Semantic Status Colors */
+  --color-success: #3B7A57;
+  --color-success-bg: #E9F5EE;
+  --color-warning: #C88A2B;
+  --color-warning-bg: #FDF4E3;
+  --color-danger: #B84A4A;
+  --color-danger-bg: #FDECEC;
+  --color-info: #4A6FA5;
+  --color-info-bg: #EBF1F8;
+
+  /* Borders & Dividers */
+  --color-border: #E8DDD5;
+  --color-border-subtle: #F0E7E0;
+  --color-border-gold: rgba(197, 160, 89, 0.35);
+
+  /* Typography Families */
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Font Sizes (Fluid & Responsive) */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.35rem;     /* 21.6px */
+  --text-2xl: 1.75rem;    /* 28px */
+  --text-3xl: 2.35rem;    /* 37.6px */
+  --text-4xl: 3.25rem;    /* 52px */
+  --text-5xl: 4.25rem;    /* 68px */
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
+  --radius-full: 9999px;
+
+  /* Luxury Soft Shadows */
+  --shadow-xs: 0 2px 8px rgba(38, 31, 27, 0.04);
+  --shadow-sm: 0 6px 20px rgba(38, 31, 27, 0.06);
+  --shadow-md: 0 12px 32px rgba(38, 31, 27, 0.08);
+  --shadow-lg: 0 20px 48px rgba(38, 31, 27, 0.12);
+  --shadow-gold: 0 10px 28px rgba(197, 160, 89, 0.22);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-smooth: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Container Max Width */
+  --container-max: 1280px;
+  --container-narrow: 920px;
+  --header-height: 84px;
+}
